@@ -1,3 +1,7 @@
+#Powershell script that lists all .xlsx files in the directory and attempts to find data that can be cast to datetime format and overwrites original xlsx files with potentialy updated data.
+#Useful when Excel does not recognize date as a date, as after casting using Powershell it will work as intended within Excel.
+#ImportExcel seems to save January 1st 1900 as January 2nd 1900 within Excel, hence the hardcoded date within if.
+
 Get-ChildItem -Filter *.xlsx | ForEach-Object  {
     Write-Host "Processing" $_.Name -ForegroundColor Cyan
     $file = Import-Excel -Path $_.Name
